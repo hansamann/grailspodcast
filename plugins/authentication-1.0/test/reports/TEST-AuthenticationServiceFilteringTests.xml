@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="MacBook.local" name="AuthenticationServiceFilteringTests" tests="3" time="0.121" timestamp="2008-04-21T23:29:14">
+  <properties />
+  <testcase classname="AuthenticationServiceFilteringTests" name="testFilterRequestNotLoggedIn" time="0.0080" />
+  <testcase classname="AuthenticationServiceFilteringTests" name="testFilterRequestLoggedInNotAuth" time="0.047" />
+  <testcase classname="AuthenticationServiceFilteringTests" name="testFilterRequestLoggedInAuthOK" time="0.015" />
+  <system-out><![CDATA[--Output from testFilterRequestNotLoggedIn--
+--Output from testFilterRequestLoggedInNotAuth--
+--Output from testFilterRequestLoggedInAuthOK--
+]]></system-out>
+  <system-err><![CDATA[--Output from testFilterRequestNotLoggedIn--
+--Output from testFilterRequestLoggedInNotAuth--
+--Output from testFilterRequestLoggedInAuthOK--
+]]></system-err>
+</testsuite>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="MacBook.local" name="AuthenticationServiceTests" tests="8" time="0.615" timestamp="2008-04-21T23:29:08">
+  <properties />
+  <testcase classname="AuthenticationServiceTests" name="testSignupNoEmailConfirm" time="0.151" />
+  <testcase classname="AuthenticationServiceTests" name="testSignupEmailConfirm" time="0.093" />
+  <testcase classname="AuthenticationServiceTests" name="testExists" time="0.048" />
+  <testcase classname="AuthenticationServiceTests" name="testLoginExistingID" time="0.052" />
+  <testcase classname="AuthenticationServiceTests" name="testLoginNoSuchID" time="0.015" />
+  <testcase classname="AuthenticationServiceTests" name="testLoginBadPassword" time="0.043" />
+  <testcase classname="AuthenticationServiceTests" name="testCustomDomainClass" time="0.0080" />
+  <testcase classname="AuthenticationServiceTests" name="testLogout" time="0.056" />
+  <system-out><![CDATA[--Output from testSignupNoEmailConfirm--
+--Output from testSignupEmailConfirm--
+--Output from testExists--
+--Output from testLoginExistingID--
+--Output from testLoginNoSuchID--
+--Output from testLoginBadPassword--
+--Output from testCustomDomainClass--
+FakeDomain@5ff851
+--Output from testLogout--
+]]></system-out>
+  <system-err><![CDATA[--Output from testSignupNoEmailConfirm--
+--Output from testSignupEmailConfirm--
+--Output from testExists--
+--Output from testLoginExistingID--
+--Output from testLoginNoSuchID--
+--Output from testLoginBadPassword--
+--Output from testCustomDomainClass--
+--Output from testLogout--
+]]></system-err>
+</testsuite>

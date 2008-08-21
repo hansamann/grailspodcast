@@ -1,0 +1,5 @@
+--Output from testAuthForm--
+<form action="/authentication/login" method="post" ><input type="hidden" name="success_controller" value="good" id="success_controller" /><input type="hidden" name="success_action" value="loggedIn" id="success_action" /><input type="hidden" name="error_controller" value="bad" id="error_controller" /><input type="hidden" name="error_action" value="failed" id="error_action" /></form>
+--Output from testLogoutLink--
+--Output from testLogoutLinkPartialParams--
+

@@ -1,0 +1,16 @@
+Testsuite: AuthenticationServiceFilteringTests
+Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 0.121 sec
+------------- Standard Output ---------------
+--Output from testFilterRequestNotLoggedIn--
+--Output from testFilterRequestLoggedInNotAuth--
+--Output from testFilterRequestLoggedInAuthOK--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testFilterRequestNotLoggedIn--
+--Output from testFilterRequestLoggedInNotAuth--
+--Output from testFilterRequestLoggedInAuthOK--
+------------- ---------------- ---------------
+
+Testcase: testFilterRequestNotLoggedIn took 0.008 sec
+Testcase: testFilterRequestLoggedInNotAuth took 0.047 sec
+Testcase: testFilterRequestLoggedInAuthOK took 0.015 sec

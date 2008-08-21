@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="MacBook.local" id="0" name="AuthenticationControllerTests" package="" tests="9" time="0.99" timestamp="2008-04-21T23:29:13">
+      <properties />
+
+      <testcase classname="AuthenticationControllerTests" name="testSignupWithDataWithFlash" time="0.235" />
+
+      <testcase classname="AuthenticationControllerTests" name="testSignupWithData" time="0.036" />
+
+      <testcase classname="AuthenticationControllerTests" name="testSignupWithBadData" time="0.138" />
+
+      <testcase classname="AuthenticationControllerTests" name="testSignupWithBadDataWithFlash" time="0.04" />
+
+      <testcase classname="AuthenticationControllerTests" name="testSignupWithLoginAlreadyTaken" time="0.023" />
+
+      <testcase classname="AuthenticationControllerTests" name="testSignupWithEmailConfirmationRequired" time="0.076" />
+
+      <testcase classname="AuthenticationControllerTests" name="testLogin" time="0.029" />
+
+      <testcase classname="AuthenticationControllerTests" name="testLoginLogout" time="0.022" />
+
+      <testcase classname="AuthenticationControllerTests" name="testLoginWithFlash" time="0.034" />
+
+      <system-out><![CDATA[--Output from testSignupWithDataWithFlash--
+--Output from testSignupWithData--
+--Output from testSignupWithBadData--
+--Output from testSignupWithBadDataWithFlash--
+--Output from testSignupWithLoginAlreadyTaken--
+--Output from testSignupWithEmailConfirmationRequired--
+--Output from testLogin--
+--Output from testLoginLogout--
+user is: authentication.AuthenticatedUser@5bd62e
+--Output from testLoginWithFlash--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSignupWithDataWithFlash--
+--Output from testSignupWithData--
+--Output from testSignupWithBadData--
+--Output from testSignupWithBadDataWithFlash--
+--Output from testSignupWithLoginAlreadyTaken--
+--Output from testSignupWithEmailConfirmationRequired--
+--Output from testLogin--
+--Output from testLoginLogout--
+--Output from testLoginWithFlash--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="MacBook.local" id="1" name="AuthenticationServiceFilteringTests" package="" tests="3" time="0.121" timestamp="2008-04-21T23:29:14">
+      <properties />
+
+      <testcase classname="AuthenticationServiceFilteringTests" name="testFilterRequestNotLoggedIn" time="0.0080" />
+
+      <testcase classname="AuthenticationServiceFilteringTests" name="testFilterRequestLoggedInNotAuth" time="0.047" />
+
+      <testcase classname="AuthenticationServiceFilteringTests" name="testFilterRequestLoggedInAuthOK" time="0.015" />
+
+      <system-out><![CDATA[--Output from testFilterRequestNotLoggedIn--
+--Output from testFilterRequestLoggedInNotAuth--
+--Output from testFilterRequestLoggedInAuthOK--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testFilterRequestNotLoggedIn--
+--Output from testFilterRequestLoggedInNotAuth--
+--Output from testFilterRequestLoggedInAuthOK--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="MacBook.local" id="2" name="AuthenticationServiceTests" package="" tests="8" time="0.615" timestamp="2008-04-21T23:29:08">
+      <properties />
+
+      <testcase classname="AuthenticationServiceTests" name="testSignupNoEmailConfirm" time="0.151" />
+
+      <testcase classname="AuthenticationServiceTests" name="testSignupEmailConfirm" time="0.093" />
+
+      <testcase classname="AuthenticationServiceTests" name="testExists" time="0.048" />
+
+      <testcase classname="AuthenticationServiceTests" name="testLoginExistingID" time="0.052" />
+
+      <testcase classname="AuthenticationServiceTests" name="testLoginNoSuchID" time="0.015" />
+
+      <testcase classname="AuthenticationServiceTests" name="testLoginBadPassword" time="0.043" />
+
+      <testcase classname="AuthenticationServiceTests" name="testCustomDomainClass" time="0.0080" />
+
+      <testcase classname="AuthenticationServiceTests" name="testLogout" time="0.056" />
+
+      <system-out><![CDATA[--Output from testSignupNoEmailConfirm--
+--Output from testSignupEmailConfirm--
+--Output from testExists--
+--Output from testLoginExistingID--
+--Output from testLoginNoSuchID--
+--Output from testLoginBadPassword--
+--Output from testCustomDomainClass--
+FakeDomain@5ff851
+--Output from testLogout--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSignupNoEmailConfirm--
+--Output from testSignupEmailConfirm--
+--Output from testExists--
+--Output from testLoginExistingID--
+--Output from testLoginNoSuchID--
+--Output from testLoginBadPassword--
+--Output from testCustomDomainClass--
+--Output from testLogout--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="MacBook.local" id="3" name="AuthenticationTagLibTests" package="" tests="3" time="0.251" timestamp="2008-04-21T23:29:14">
+      <properties />
+
+      <testcase classname="AuthenticationTagLibTests" name="testAuthForm" time="0.206" />
+
+      <testcase classname="AuthenticationTagLibTests" name="testLogoutLink" time="0.02" />
+
+      <testcase classname="AuthenticationTagLibTests" name="testLogoutLinkPartialParams" time="0.012" />
+
+      <system-out><![CDATA[--Output from testAuthForm--
+<form action="/authentication/login" method="post" ><input type="hidden" name="success_controller" value="good" id="success_controller" /><input type="hidden" name="success_action" value="loggedIn" id="success_action" /><input type="hidden" name="error_controller" value="bad" id="error_controller" /><input type="hidden" name="error_action" value="failed" id="error_action" /></form>
+--Output from testLogoutLink--
+--Output from testLogoutLinkPartialParams--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testAuthForm--
+--Output from testLogoutLink--
+--Output from testLogoutLinkPartialParams--
+]]></system-err>
+
+  </testsuite>
+</testsuites>
