@@ -1,0 +1,253 @@
+.flickrImage
+{
+	float:left;
+	margin-bottom: 15px;
+}
+
+
+.flickrImageRight
+{
+	float: right;
+	margin-bottom: 15px;
+}
+
+.defaultContainer
+{
+	padding:0.5em;
+	border-left: 1px dotted rgb(230,230,230);
+	border-right: 1px dotted rgb(230,230,230);
+	border-bottom: 1px dotted rgb(230,230,230);
+	background-image: url('/images/gspot/transparent25.png');	
+}
+
+.center 
+{
+	text-align: center;
+}
+
+.twitter 
+{
+	padding:0.5em;
+	border-left: 1px dotted rgb(230,230,230);
+	border-right: 1px dotted rgb(230,230,230);
+	border-bottom: 1px dotted rgb(230,230,230);
+	background-image: url('/images/gspot/transparent25.png');	
+}
+
+.twitter li
+{
+	padding-top:2px;
+	padding-bottom:2px;
+}
+.twitter ul
+{
+	margin: 0;	
+}
+
+.twitter li
+{
+	list-style: none inside;
+}
+
+.delicious
+{
+	padding:0.5em;	
+	border-left: 1px dotted rgb(230,230,230);
+	border-right: 1px dotted rgb(230,230,230);
+	border-bottom: 1px dotted rgb(230,230,230);
+	background-image: url('/images/gspot/transparent25.png');	
+}
+
+.centered
+{
+	margin: 0 auto;
+}
+
+.headerWrap 
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-image: url('/images/gspot/transparent25.png');
+	z-index: 2;
+}
+
+.header 
+{
+	text-align: right;
+	padding: 5px;
+	font-size: 85%;
+}
+
+.left 
+{
+	float: left;
+}
+
+.right 
+{
+	float: right;
+}
+
+.round 
+{
+	background-image: url('/images/gspot/transparent25.png');
+	text-align: center;
+	padding: 0.5em 2.5em;
+	font-size: 85%;
+	
+}
+
+.section
+{
+	padding: 0.5em;
+	font-weight: bolder;
+	background-image: url('/images/gspot/transparent75.png');	
+}
+
+.topSpace
+{
+	margin-top: 0.5em;
+}
+
+.ruler
+{
+	position: fixed;
+	top:-1400px;
+	left:0px;
+}
+
+#nowImage 
+{
+	position: fixed;
+	top: 60px;
+	left: 15px;
+
+}
+
+.entry
+{
+	padding: 0.5em;	
+	background-image: url('/images/gspot/transparent25.png');	
+	margin-bottom: 0.5em;	
+}
+
+.entry .meta
+{
+	text-align: right;
+	font-size: 85%;
+	border-bottom: 1px dotted;
+}
+
+
+.entry .title 
+{	
+	clear:both;
+	font-weight: bolder;
+	font-size:123.1%; /*renders 16px */
+	margin-top: 1em;
+}
+
+.entry .content
+{
+	margin-top: 0.3em;
+	margin-bottom: 1em;
+}
+
+.entry .content .enclosure
+{
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	padding: 0.5em;	
+	background-image: url('/images/gspot/transparent25.png');		
+	
+}
+
+.entry .content .feedburnerFlareBlock
+{
+	font-size: 85%;	
+}
+
+.entry .comments
+{
+	font-size: 85%;
+	border-top: 1px dotted;
+}
+
+.entry .comments .comment
+{
+	margin-top: 0.3em;
+	text-align: right;
+	padding-left: 2em;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.commentTextarea
+{
+	width: 100%;
+	height: 10em;
+	border: 1px solid #ccc;
+}
+
+.layoutTable
+{
+	border: 0;
+	width: 100%;
+	margin-bottom: 0px !important;
+}
+
+.key
+{
+	width: 15%;
+	text-align: left;
+	border: 0px !important;
+}
+
+.value
+{
+	width:85%;
+	text-align: left;
+	border: 0px !important;
+}
+
+.input
+{
+	background-color: #fcfcfc;
+	border: 1px solid #ccc;
+	font: 11px verdana, arial, helvetica, sans-serif;
+	margin: 2px 0;
+	padding: 2px 4px !important;
+}
+
+.pagination 
+{
+	padding: 0.5em;	
+	background-image: url('/images/gspot/transparent25.png');	
+	margin-bottom: 0.5em;
+	text-align: right;
+	font-size: 85%;
+}	
+	
+.pagination .prevLink,.step
+{
+	margin: 0 0.25em;
+}
+
+.pagination .nextLink
+{
+	margin-left: 0.25em;
+}
+
+.off {
+	display:none;
+}
