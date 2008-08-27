@@ -6,7 +6,7 @@ class TwitterService {
     {
     	def entryURL = "http://www.grailspodcast.com/blog/id/${entry.id}"
     	def tinyURL = tinyURL(entryURL)
-    	def msg = "${entry.title} was just published: ${tinyURL}}"
+    	def msg = "${entry.title} was just published: ${tinyURL}"
     	sendMessage(msg)
     }
 
@@ -14,7 +14,7 @@ class TwitterService {
 	{
     	def entryURL = "http://www.grailspodcast.com/blog/id/${entry.id}"
     	def tinyURL = tinyURL(entryURL)
-    	def msg = "${entry.title} was updated: ${tinyURL}}"
+    	def msg = "${entry.title} was updated: ${tinyURL}"
     	sendMessage(msg)		
 	}
     
@@ -22,7 +22,7 @@ class TwitterService {
     {
     	def entryURL = "http://www.grailspodcast.com/blog/id/${entry.id}"
     	def tinyURL = tinyURL(entryURL)
-    	def msg = "New comment for ${entry.title}: ${tinyURL}}"
+    	def msg = "New comment for ${entry.title}: ${tinyURL}"
     	sendMessage(msg)		
     }
     
