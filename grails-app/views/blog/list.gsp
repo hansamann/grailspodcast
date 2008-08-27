@@ -106,7 +106,8 @@
 						<a href="http://www.flickr.com/search/?q=grailspodcast&m=tags">Flickr tag: 'grailspodcast'</a><br/>
 						<a href="http://twitter.com/grailspodcast">Follow us on Twitter!</a><br/>
 						<a href="http://digg.com/podcasts/Grails_Podcast">Digg us!</a><br/>
-						<a href="mailto:grails.podcast@gmail.com">grails.podcast@gmail.com</a>
+						<a href="mailto:grails.podcast@gmail.com">grails.podcast@gmail.com</a><br/>
+						<a href="callto:+14083319118">Voicemail: +1 408 3319 118</a>
 					</div>					
 	      		
 	      			<div class="section topSpace">updates</div>

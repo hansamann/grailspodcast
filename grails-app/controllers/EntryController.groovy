@@ -1,4 +1,9 @@
+import grails.util.GrailsUtil
+import org.codehaus.groovy.grails.commons.GrailsApplication
+
 class EntryController extends SecureController {
+
+	def twitterService
 	
     def index = { redirect(action:list,params:params) }
 
@@ -58,6 +63,22 @@ class EntryController extends SecureController {
             
             if(!entry.hasErrors() && entry.save()) {
                 flash.message = "Entry ${params.id} updated"
+
+                if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
+                {
+                	try
+    	            {	
+    	            	twitterService.announceUpdatedEntry(entry)
+    	            } catch (Exception e)
+    	            {
+    	            	log.warn('Unable to send update twitter message', e)
+    	            }
+                }
+                else
+                {
+                	log.info('Not sending twitter message in development')
+                }                
+                
                 redirect(action:show,id:entry.id)
             }
             else {
@@ -87,6 +108,22 @@ class EntryController extends SecureController {
         
         if(!entry.hasErrors() && entry.save()) {
             flash.message = "Entry ${entry.id} created"
+           
+            if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
+            {
+            	try
+	            {	
+	            	twitterService.announceEntry(entry)
+	            } catch (Exception e)
+	            {
+	            	log.warn('Unable to send twitter message', e)
+	            }
+            }
+            else
+            {
+            	log.info('Not sending twitter message in development')
+            }
+        
             redirect(action:show,id:entry.id)
         }
         else {

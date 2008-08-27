@@ -6,7 +6,7 @@ class BootStrap {
      	entries << [1, 6014431, 2006, 8, 6]
      	entries << [2, 12916191, 2006, 8, 11]
      	entries << [3, 12001489, 2006, 8, 18]
-     	entries << [4, 15770325, 2006, 8, 6]
+     	entries << [4, 15770325, 2006, 8, 20]
      	entries << [5, 7846158, 2006, 8, 25]
      	entries << [6, 11233092, 2006, 9, 1]
      	entries << [7, 17905804, 2006, 9, 15]
@@ -104,6 +104,7 @@ class BootStrap {
 	     {
 	    	 new AuthenticationUser(login:'hansamann', password:'5434DAD493D7B0F3281860E3EEA5EAC2', email:'hansamann@yahoo.de', status:1).save()
 	    	 new AuthenticationUser(login:'glen.smith', password:'354083264AFF0A94E404F1F4E5DE5EFD', email:'glen.smith@gmail.com', status:1).save()
+	    	 new AuthenticationUser(login:'grailspodcast', password:'', email:'grails.podcast@gmail.com', status:1).save()
 	     }
 	     
      }

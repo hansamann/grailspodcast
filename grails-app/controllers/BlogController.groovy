@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat
 
 class BlogController {
 	def jcaptchaService
+	def twitterService
 	
     def index = { redirect(action:list,params:params) }
     
@@ -32,6 +33,22 @@ class BlogController {
 				 log.info("entry id: ${comment.entry.id}")
 				 
 				 if(!comment.hasErrors() && comment.save()) {
+					 
+		                if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
+		                {
+		                	try
+		    	            {	
+		    	            	twitterService.announceComment(entry)
+		    	            } catch (Exception e)
+		    	            {
+		    	            	log.warn('Unable to send comment twitter message', e)
+		    	            }
+		                }
+		                else
+		                {
+		                	log.info('Not sending twitter message in development')
+		                } 					 
+					 
 					 render(contentType:"text/json") { 
 						 ok(entryId:comment.entry.id)
 					 }   

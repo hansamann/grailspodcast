@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'blog.css')}" />		
         <link href="http://feeds.grailspodcast.com/grailspodcast" rel="alternate" type="application/rss+xml" title="Grails Podcast Feed" />
         <script type="text/javascript" src="http://static.delicious.com/js/playtagger.js"></script>	
+        <meta name="verify-v1" content="m4T3qEhWQnrgrSJ3lqqHqKsMthninFsWFiKc0pRvxQ8=" />
     </head>
     <body class="yui-skin-sam">
         <g:layoutBody />		
