@@ -40,14 +40,12 @@ function init()
 	  		createWeatherHeader(weather);
 	  		setColor(weather);
 	  		
-
 	  		//test
 	  		//YAHOO.gspot.colorTimer = YAHOO.lang.later (2000, null , testBackground , null , true );
   		},
 	  	failure: function(o) 
 	  	{ 
 	  		YAHOO.log('Error getting weather!'); 
-	  		moveScale(25);
   		}
 	}, null); 
 	
@@ -55,6 +53,9 @@ function init()
 	var commentLinks = YAHOO.util.Dom.getElementsBy(function(e) { return (e.id && e.id.indexOf('createComment') != -1) ? true : false; }, 'a', 'entryContent');
 	YAHOO.util.Event.addListener(commentLinks, "click", createComment); 
 	YAHOO.util.Event.addListener('commentButton', "click", createCommentPerform); 
+	YAHOO.util.Event.addListener('searchBox', 'mouseover', searchBoxOver);
+	YAHOO.util.Event.addListener('searchBox', 'mouseout', searchBoxOut);
+	YAHOO.util.Event.addListener('searchBox', 'keydown', search);
 	
 	
 	//create comment dialog
@@ -62,6 +63,60 @@ function init()
 	
 		
 	 
+}
+
+function searchBoxOver(event)
+{
+	if (this.value == 'search term')
+		this.value = ''
+}
+
+function searchBoxOut(event)
+{
+	if (this.value == '')
+		this.value = 'search term'
+}
+
+function search(event)
+{
+	if(event.keyCode == 13) //enter
+	{
+		var bossBase = 'http://boss.yahooapis.com/ysearch/web/v1/';
+		var searchTerm = escape(this.value);
+		var queryAndAppId = '?appid=hmNIpqzV34GgFhD60AgJiVe07VOtNMxJbOAodftNZWUYB4wu6mJP0nCkEi3GtNhq';
+		var format = '&format=json';
+		var count = '&count=10';
+
+		var sitesArray = ['grailspodcast.com', 'gspot.morphexchange.com', 'hansamann.podspot.de'];
+		var sites = '&sites=' + sitesArray.join(',');
+		var callback = '&callback=processSearchResult';
+
+		var requestURL = bossBase + searchTerm + queryAndAppId + format + count + sites + callback;
+		var transaction = YAHOO.util.Get.script(requestURL); 
+	}
+}
+
+function processSearchResult(result)
+{
+	var html = '';
+	
+	for (pos in result.ysearchresponse.resultset_web)
+	{
+		var r = result.ysearchresponse.resultset_web[pos];
+		html+= buildResultEntry(r);
+	}
+
+	YAHOO.util.Dom.get('entryContent').innerHTML = html;
+}
+
+function buildResultEntry(r)
+{
+	var html = '<div class="entry">';
+	html += '<div class="title"><a href="'+r.clickurl+'">' + r.title + '</a></div>';
+	html += '<div class="content">' + r.abstract + '</div>';
+	html += '<div class="enclosure"><a href="'+r.clickurl+'">'+r.dispurl+'</a></div>';	
+	html += '</div>';	
+	return html;
 }
 
 function createCommentDialog()
@@ -276,16 +331,14 @@ function setColor(weather)
 	}
 	
 	var darkerRgbString = 'rgb('+darkerColor.r+','+darkerColor.g+','+darkerColor.b+')';
-	
-	
-	
 	YAHOO.log('darker: ' + darkerRgbString);
-	colorAllLinks(darkerRgbString);
-	//YAHOO.util.Dom.getElementsBy( function(e) { return true;} , 'a' , document.body , function(e) { YAHOO.util.Dom.setStyle(e, 'color', darkerRgbString); } )
 	
+	colorAllLinks(darkerRgbString);
+		
 	//run this a few seconds later, too, so all links even onse loaded into the page are the same color
 	YAHOO.lang.later(4000, this, colorAllLinks, darkerRgbString, true);
 }
+
 
 function colorAllLinks(rgbString)
 {

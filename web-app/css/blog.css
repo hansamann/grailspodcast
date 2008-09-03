@@ -251,3 +251,8 @@ a:hover {
 .off {
 	display:none;
 }
+
+#searchBox 
+{
+	width: 215px;
+}

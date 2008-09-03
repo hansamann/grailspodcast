@@ -3,6 +3,8 @@ import com.sun.syndication.feed.synd.SyndImageImpl
 import grails.converters.JSON
 import java.util.GregorianCalendar
 import java.text.SimpleDateFormat
+import grails.util.GrailsUtil
+import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class BlogController {
 	def jcaptchaService

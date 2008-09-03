@@ -26,7 +26,7 @@ environments {
 	}
 	production {
 		dataSource {
-			dbCreate = "create" // one of 'create', 'create-drop','update'
+			//dbCreate = "create" // one of 'create', 'create-drop','update'
 			username = "user_581"
 			password = "p_ezuyew"
 			url = "jdbc:postgresql://10.254.239.98/db_1_581"

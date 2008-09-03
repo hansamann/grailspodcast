@@ -88,7 +88,15 @@
 	      		 </div>
 	      		
 	      		<div class="yui-b">
-	      			<div class="section">about</div>
+	      			<div class="section">search</div>
+	      			<div class="defaultContainer">
+					    <div id="autoCompleteSearch">
+					        <input type="text" id="searchBox" value="search term"/>
+					        <div id="searchContainer"></div>
+					    </div>
+	      			</div>	      			
+	      			
+	      			<div class="section topSpace">about</div>
 	      			<div class="defaultContainer">
 	      			The Grails Podcast is a bi-monthly podcast about the <a href="http://groovy.codehaus.org">Groovy</a> scripting language, the <a href="http://www.grails.org">Grails</a> Web Framework and more. It is run by Glen Smith from Canberra, Australia and Sven Haiges from Sunnyvale, California.
 	      			 
@@ -135,7 +143,7 @@
 	   		</div> 
 	   		<div id="ft">
 	   		<!-- footer -->
-	   		<div class="round">Sven Haiges | http://www.svenhaiges.de | Skype/YahooIM: hansamann | The content of this blog represents my personal opinion and is not linked to or affected by my current employer.</div>
+	   		<div class="round">Grails Podcast 0.1 on Grails 1.0.3 | by <a href="http://hansamann.wordpress.com">Sven Haiges</a> and <a href="http://blogs.bytecode.com.au/glen">Glen Smith</a> | This blog is published under the <a href="http://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution-Noncommercial 3.0 License</a>. </div>
 	   		</div> 
 		</div>
    
