@@ -2,7 +2,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="bloglayout" />
-        <title>gSpot - The Groovy &amp; Grails Podcast</title>
+     	<g:if test="${title}">
+			<title>${title?.encodeAsHTML()}</title>
+		</g:if>	        
+        
         <script src="http://yui.yahooapis.com/2.5.2/build/yuiloader/yuiloader-beta-min.js"></script>
         <g:javascript src="gspot/gspot.js" />
         <script src="http://feeds.feedburner.com/~s/grailspodcast" type="text/javascript" charset="utf-8"></script>	

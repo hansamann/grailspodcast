@@ -73,12 +73,15 @@ class BlogController {
     
     def id = {
 			log.info('id action')
-			render(view:"list",model:[ entries: Entry.get( params.id ), now:getNowString() ])
+			def entry = Entry.get( params.id )
+			render(view:"list",model:[ entries: entry, title:entry.title, now:getNowString() ])
     } 
     
     def tag = {
 			log.info('tag action')
-			render(view:"list",model:[ entries: Entry.findAllByTagsLike("%${params.id}%"), now:getNowString() ])
+			params.order = "desc"
+            params.sort = "created"
+			render(view:"list",model:[ entries: Entry.findAllByTagsLike("%${params.id}%", params), now:getNowString() ])
     		
     }
 	
