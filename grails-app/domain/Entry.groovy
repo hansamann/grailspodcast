@@ -25,7 +25,7 @@ class Entry {
 	def getHumanReadableDate()
 	{
 		def dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy - HH:mm")
-		def nowString = dateFormat.format(created);
+		def nowString = dateFormat.format(created) + ' UTC';
 	}
 	
 	def getFormattedTags()

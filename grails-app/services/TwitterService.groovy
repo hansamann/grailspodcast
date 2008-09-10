@@ -4,25 +4,43 @@ class TwitterService {
 
     def announceEntry(entry)
     {
-    	def entryURL = "http://www.grailspodcast.com/blog/id/${entry.id}"
-    	def tinyURL = tinyURL(entryURL)
-    	def msg = "${entry.title} was just published: ${tinyURL}"
+    	def tinyURL = tinyURL("http://www.grailspodcast.com/blog/id/${entry.id}")
+    	def remaining = 130 - tinyURL.size()
+    	def msg = "${entry.title} just published: "
+   
+    	if (msg.size() > remaining)
+    		msg = msg[0..remaining] + '... ' + tinyURL
+    	else
+    		msg = msg + ' ' + tinyURL
+    
     	sendMessage(msg)
     }
 
 	def announceUpdatedEntry(entry)
 	{
-    	def entryURL = "http://www.grailspodcast.com/blog/id/${entry.id}"
-    	def tinyURL = tinyURL(entryURL)
-    	def msg = "${entry.title} was updated: ${tinyURL}"
+    	def tinyURL = tinyURL("http://www.grailspodcast.com/blog/id/${entry.id}")
+    	def remaining = 130 - tinyURL.size()
+    	def msg = "${entry.title} was updated: "
+    	
+    	if (msg.size() > remaining)
+    		msg = msg[0..remaining] + '... ' + tinyURL
+    	else
+    		msg = msg + ' ' + tinyURL    	
+    	
     	sendMessage(msg)		
 	}
     
     def announceComment(entry)
     {
-    	def entryURL = "http://www.grailspodcast.com/blog/id/${entry.id}"
-    	def tinyURL = tinyURL(entryURL)
-    	def msg = "New comment for ${entry.title}: ${tinyURL}"
+    	def tinyURL = tinyURL("http://www.grailspodcast.com/blog/id/${entry.id}")
+    	def remaining = 130 - tinyURL.size()
+    	def msg = "New comment for ${entry.title}: "
+    	
+    	if (msg.size() > remaining)
+    		msg = msg[0..remaining] + '... ' + tinyURL
+    	else
+    		msg = msg + ' ' + tinyURL
+    		
     	sendMessage(msg)		
     }
     

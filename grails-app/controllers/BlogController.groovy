@@ -18,7 +18,7 @@ class BlogController {
             if(!params.max) params.max = 10
             params.order = "desc"
             params.sort = "created"
-            [ entries: Entry.findAllByCreatedLessThan( getNow(), params ), now:getNowString() ]
+            [ entries: Entry.findAllByCreatedLessThan( new Date(), params ), now:getNowString() ]
             //[ entries: Entry.listOrderByCreated( params ), now:getNowString() ]
     }
 	
@@ -28,7 +28,7 @@ class BlogController {
 			 if (jcaptchaService.validateResponse("imageCaptcha", session.id, params.captcha))
 		     {
 				 def comment = new Comment(params)
-				 comment.created = getNow()
+				 comment.created = new Date()
 			     def entry = Entry.get(params.entry.id)
 			     entry.addToComments(comment)
 				 log.info("errors? ${comment.hasErrors()}")
@@ -86,7 +86,7 @@ class BlogController {
     }
 	
 	def rss = {
-			def entries = Entry.findAllByCreatedLessThan( getNow(), [order:'desc', sort:'created'] );
+			def entries = Entry.findAllByCreatedLessThan( new Date(), [order:'desc', sort:'created'] );
 			def linkBase = 'http://www.grailspodcast.com/'
 			def desc = "This podcast will keep you up to date about Groovy and the Grails Web Application Framework. Shows delivered right into your favourite podcatcher include news about Grails and Groovy, Interviews with key developers and much more. E-Mail grails.podcast@gmail.com for feedback and inclusion into the show."
 			def imageURL = 'http://gspot.morphexchange.com/images/gspot/grails_podcast_logo.jpg'
@@ -149,7 +149,7 @@ class BlogController {
 		def nowString = dateFormat.format(getNow());     	
     	return nowString;
     }
-	
+	/* this returns sunnyvale time, only used for header display. rest uses UTC */
 	private Date getNow()
 	{
 		return new Date(new Date().time - 7 * 60 * 60 * 1000) // - 7 hours
