@@ -36,9 +36,16 @@
 	         				<div class="yui-u first">	         				
 	         				
 		         				<!-- Start of Flickr -->
-								<div class="flickr" id="flickr">
+		         				<div class="section">special stuff</div>
+				      			<div class="defaultContainer">
+								    <g:link controller="blog" action="tag" id="interview">All Interviews</g:link><br/>
+								    <g:link controller="blog" action="tag" id="groovyseries">All Groovy Series</g:link><br/> 
+								    <g:link controller="blog" action="tag" id="groovyseries">All Getting Real</g:link><br/>
+				      			</div>	
+		         				
+								<div class="flickr topSpace" id="flickr">
 										
-								</div class="flickr">
+								</div>
 								<!-- End of Flickr -->
 	         				
 	         				
@@ -101,9 +108,8 @@
 	      			
 	      			<div class="section topSpace">about</div>
 	      			<div class="defaultContainer">
-	      			The Grails Podcast is a bi-monthly podcast about the <a href="http://groovy.codehaus.org">Groovy</a> scripting language, the <a href="http://www.grails.org">Grails</a> Web Framework and more. It is run by Glen Smith from Canberra, Australia and Sven Haiges from Sunnyvale, California.
-	      			 
-	      			
+	      			The Grails Podcast is a bi-monthly podcast about the <a href="http://groovy.codehaus.org">Groovy</a> scripting language, the <a href="http://www.grails.org">Grails</a> 
+	      			Web Framework and more. It is run by <a href="http://blogs.bytecode.com.au/glen">Glen Smith</a> from Canberra, Australia and <a href="http://hansamann.wordpress.com">Sven Haiges</a> from Sunnyvale, California.
 	      			</div>
 	      		
 	      			<div class="section topSpace">feeds</div>
@@ -146,7 +152,7 @@
 	   		</div> 
 	   		<div id="ft">
 	   		<!-- footer -->
-	   		<div class="round">Grails Podcast 0.1 on Grails 1.0.3 | by <a href="http://hansamann.wordpress.com">Sven Haiges</a> and <a href="http://blogs.bytecode.com.au/glen">Glen Smith</a> | This blog is published under the <a href="http://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution-Noncommercial 3.0 License</a>. </div>
+	   		<div class="round">Grails Podcast 0.2 on Grails 1.0.3 | by <a href="http://hansamann.wordpress.com">Sven Haiges</a> and <a href="http://blogs.bytecode.com.au/glen">Glen Smith</a> | This blog is published under the <a href="http://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution-Noncommercial 3.0 License</a>. </div>
 	   		</div> 
 		</div>
    

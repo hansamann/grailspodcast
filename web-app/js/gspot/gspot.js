@@ -246,14 +246,19 @@ function createWeatherHeader(weather)
 	var weatherHeader = "Sunnyvale, CA &middot; ";
 	weatherHeader += weather.nowCondition + ', ' + weather.nowTemp + '&deg;C &middot; ';
 	weatherHeader += weather.tomorrow.day + ': ' + weather.tomorrow.condition + ', L' + weather.tomorrow.low + '/H' + weather.tomorrow.high + '&deg;C &middot; ';
-	weatherHeader += 'Sunrise: ' + weather.sunrise.hour + ':' + weather.sunrise.minute + ' &middot; ';
-	weatherHeader += 'Sunset: ' + weather.sunset.hour + ':' + weather.sunset.minute;
+	
+	var sunriseM = parseInt(weather.sunrise.minute, 10);
+	var sunsetM = parseInt(weather.sunset.minute, 10);
+	sunriseM = (sunriseM > 9) ? sunriseM : '0' + sunriseM;
+	sunsetM = (sunsetM > 9) ? sunsetM : '0' + sunsetM;
+	weatherHeader += 'Sunrise: ' + weather.sunrise.hour + ':' + sunriseM + ' &middot; ';
+	weatherHeader += 'Sunset: ' + weather.sunset.hour + ':' + sunsetM;
 	id('weatherHeader').innerHTML = weatherHeader;
 }
 
 function id(id)
 {
-	return document.getElementById(id);
+	return YAHOO.util.Dom.get(id);
 }
 
 function setColor(weather)

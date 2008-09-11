@@ -74,22 +74,22 @@ class BlogController {
     def id = {
 			log.info('id action')
 			def entry = Entry.get( params.id )
-			render(view:"list",model:[ entries: entry, title:entry.title, now:getNowString() ])
+			render(view:"list",model:[ entries: entry, title:entry?.title, now:getNowString() ])
     } 
 	
 	//called by episode URLMapping
 	def episodeNumber = 
 	{
 			log.info('episodeNumber: ' + params.id)
-			render params.id
+			def entry = Entry.findByTitleIlike("%Episode ${params.id}%")
+			render(view:"list",model:[ entries: entry, title:entry?.title, now:getNowString() ])
 	}
     
     def tag = {
 			log.info('tag action')
 			params.order = "desc"
             params.sort = "created"
-			render(view:"list",model:[ entries: Entry.findAllByTagsLike("%${params.id}%", params), now:getNowString() ])
-    		
+			render(view:"list",model:[ entries: Entry.findAllByTagsIlike("%${params.id}%", params), now:getNowString() ])
     }
 	
 	def rss = {

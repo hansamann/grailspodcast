@@ -11,7 +11,9 @@ class EntryController extends SecureController {
     def allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        if(!params.max) params.max = 10
+        if (!params.max) params.max = 10
+		if (!params.order) params.order = "desc"
+        if (!params.sort) params.sort = "created"
         [ entryList: Entry.list( params ) ]
     }
 
