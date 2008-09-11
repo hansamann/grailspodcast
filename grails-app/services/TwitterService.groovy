@@ -27,7 +27,7 @@ class TwitterService {
     	else
     		msg = msg + ' ' + tinyURL    	
     	
-    	sendMessage(msg)		
+    	sendMessage(msg)
 	}
     
     def announceComment(entry)

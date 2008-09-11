@@ -76,6 +76,13 @@ class BlogController {
 			def entry = Entry.get( params.id )
 			render(view:"list",model:[ entries: entry, title:entry.title, now:getNowString() ])
     } 
+	
+	//called by episode URLMapping
+	def episodeNumber = 
+	{
+			log.info('episodeNumber: ' + params.id)
+			render params.id
+	}
     
     def tag = {
 			log.info('tag action')
