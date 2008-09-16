@@ -105,7 +105,7 @@ class BlogController {
 			
 			render(feedType:"rss", feedVersion:"2.0") 
 			{
-	            title = "gSpot - The Groovy & Grails Podcast"
+	            title = "grailspodcast.com - The Groovy & Grails Podcast"
 	            link = "http://www.grailspodcast.com"
 	            description = desc
 	            language = "en-gb"
@@ -136,12 +136,20 @@ class BlogController {
 	            			type = "text/html"
 	            			blogEntry.content //returns the content
 	            		}
-	            		enclosure 
-	            		{
-	            			type=blogEntry.enclosureType
-	            			length=blogEntry.enclosureLength
-	            			url=blogEntry.enclosureURL
+	            		if (blogEntry.enclosureURL)
+	            		{	
+		            		enclosure 
+		            		{
+		            			type=blogEntry.enclosureType
+		            			length=blogEntry.enclosureLength
+		            			url=blogEntry.enclosureURL
+		            		}
 	            		}
+	                    iTunes {
+	                        author = "Glen Smith, Sven Haiges"	                    
+	                        keywords = ['groovy', 'grails', 'java']
+	                        explicit = false
+	                    }
 	            		
 	            	}
 	            	

@@ -74,7 +74,7 @@
 
 			         					</div>
 			         					<div class="comments">
-			         						${entry.formattedComment} &middot; <a id="createComment${entry.id}" href="#">Create comment</a>
+			         						${entry.formattedComment} &middot; <a id="createComment${entry.id}">Create comment</a>
 			         						<g:each in="${entry.comments}" var="comment">
 				         						<div class="comment">
 				         							<strong>${comment.formattedCreated}</strong>, ${comment.author.encodeAsHTML()} wrote:<br/>
@@ -170,12 +170,12 @@
 													</tr>
 													<tr>
 														<td class="key">Verification:</td>
-														<td class="value"><input name="captcha" class="input" value="verify you're human"/><jcaptcha:jpeg id="captcha" style="vertical-align:bottom;" name="imageCaptcha" height="23" width="100" /></td>
+														<td class="value"><input name="captcha" class="input" value="verify you're human"/>&nbsp;<jcaptcha:jpeg id="captcha" style="vertical-align:bottom;" name="imageCaptcha" height="23" width="100" /></td>
 													</tr>
 													</table>
 													<textarea class="commentTextarea" name="content">plain text only</textarea>
 													<div style="text-align:right;margin:1em 0;">
-														<input type="button" name="commentButton" id="commentButton" value="click me" />
+														<input type="button" name="commentButton" id="commentButton" value="send" />
 														<input id="newCommentEntryId" type="hidden" name="entry.id" value=""/>
 													</div>	
 												</g:form>

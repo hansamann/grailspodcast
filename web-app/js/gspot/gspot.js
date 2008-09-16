@@ -1,9 +1,10 @@
 
 var loader = new YAHOO.util.YUILoader
 ({
-    require: ["yahoo", "event", "dom", "element", "button", "logger", "container", "connection", "json", "animation", "reset", "fonts", "grids", "base"],
+    require: ["logger", "yahoo", "event", "dom", "element", "button", "container", "connection", "json", "animation", "reset", "fonts", "grids", "base"],
     loadOptional: true,
     onSuccess: function() {
+		YAHOO.widget.Logger.enableBrowserConsole();
 		YAHOO.util.Event.onDOMReady(init);    
     }
 });
@@ -16,17 +17,16 @@ var SvgColors = {};
 
 function init()
 { 
-   	YAHOO.widget.Logger.enableBrowserConsole();
+	YAHOO.log('init()');
    	YAHOO.namespace("gspot");
-   	YAHOO.log('init()');
-   	
+
    	//load flickr images
    	loadFlickrImages();
    	
    	
    	//load weather from server
    	YAHOO.gspot.base = '';
-  
+ 
    
    	var url = '/blog/dynamicWeather';
    	var weatherTransaction = YAHOO.util.Connect.asyncRequest('GET', YAHOO.gspot.base + url,
@@ -50,19 +50,24 @@ function init()
 	}, null); 
 	
 	//connect create comment links
-	var commentLinks = YAHOO.util.Dom.getElementsBy(function(e) { return (e.id && e.id.indexOf('createComment') != -1) ? true : false; }, 'a', 'entryContent');
-	YAHOO.util.Event.addListener(commentLinks, "click", createComment); 
-	YAHOO.util.Event.addListener('commentButton', "click", createCommentPerform); 
+	YAHOO.lang.later(3000, this, initComments, null, false);
+	
 	YAHOO.util.Event.addListener('searchBox', 'mouseover', searchBoxOver);
 	YAHOO.util.Event.addListener('searchBox', 'mouseout', searchBoxOut);
 	YAHOO.util.Event.addListener('searchBox', 'keydown', search);
 	
 	
-	//create comment dialog
-	createCommentDialog();
 	
-		
 	 
+}
+
+
+function initComments()
+{
+	var commentLinks = YAHOO.util.Dom.getElementsBy(function(e) { return (e.id && e.id.indexOf('createComment') != -1) ? true : false; }, 'a', 'entryContent');
+	//alert(commentLinks.length);
+	YAHOO.util.Event.addListener(commentLinks, "click", createComment); 
+	YAHOO.util.Event.addListener('commentButton', "click", createCommentPerform); 
 }
 
 function searchBoxOver(event)
@@ -119,18 +124,10 @@ function buildResultEntry(r)
 	return html;
 }
 
-function createCommentDialog()
-{
-	YAHOO.log('createCommentDialog()');
-	YAHOO.gspot.commentButton= new YAHOO.widget.Button("sendCommentButton");
-	
-
-}
-
 function createComment(e)
 {
 	YAHOO.log(this.id);
-	YAHOO.util.Event.stopEvent(e);
+
 	
 	YAHOO.util.Dom.get('captcha').src = '/jcaptcha/jpeg/imageCaptcha?' + new Date().getTime();
 	
@@ -142,6 +139,10 @@ function createComment(e)
 	
 	//set the correct id of the entry to the hidden form field to capture the entry
 	YAHOO.util.Dom.get('newCommentEntryId').value = parseInt(this.id.substring(13, this.id.length), 10);
+	
+	YAHOO.util.Event.stopEvent(e);
+	//YAHOO.util.Event.stopPropagation(e);
+	//YAHOO.util.Event.preventDefault(e);
 }
 
 function createCommentPerform(e)
