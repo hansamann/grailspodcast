@@ -73,26 +73,29 @@ function initComments()
 function searchBoxOver(event)
 {
 	if (this.value == 'search term')
-		this.value = ''
+		this.value = '';
 }
 
 function searchBoxOut(event)
 {
 	if (this.value == '')
-		this.value = 'search term'
+		this.value = 'search term';
 }
 
 function search(event)
 {
 	if(event.keyCode == 13) //enter
 	{
+		if (this.value.length == 0)
+			return;
+		
 		var bossBase = 'http://boss.yahooapis.com/ysearch/web/v1/';
 		var searchTerm = escape(this.value);
 		var queryAndAppId = '?appid=hmNIpqzV34GgFhD60AgJiVe07VOtNMxJbOAodftNZWUYB4wu6mJP0nCkEi3GtNhq';
 		var format = '&format=json';
 		var count = '&count=10';
 
-		var sitesArray = ['grailspodcast.com', 'gspot.morphexchange.com', 'hansamann.podspot.de'];
+		var sitesArray = ['grailspodcast.com', 'gspot.morphexchange.com'];
 		var sites = '&sites=' + sitesArray.join(',');
 		var callback = '&callback=processSearchResult';
 
