@@ -125,6 +125,7 @@ class BlogController {
 	            }
 
 	            entries.each { blogEntry ->
+	            	def clean = cleanUp(blogEntry.content)
 	            	entry(blogEntry.title) 
 	            	{
 	            		link = "${linkBase}blog/id/${blogEntry.id}"
@@ -149,6 +150,9 @@ class BlogController {
 	                        author = "Glen Smith, Sven Haiges"	                    
 	                        keywords = ['groovy', 'grails', 'java']
 	                        explicit = false
+	                        subtitle = clean.subtitle
+	                        summary = clean.summary
+	                        
 	                    }
 	            		
 	            	}
@@ -156,6 +160,22 @@ class BlogController {
 	            }
 			} 			
 			
+	}
+	
+	private cleanUp(String markup)
+	{
+		def max = 500
+		def nohtml = markup.replaceAll(/\<.*?\>/, '')
+		
+		if (nohtml.size() > max)
+		{
+		    nohtml = nohtml[0..max] + '...'
+		}
+		
+		def summary = nohtml;
+		def description = (nohtml.size() > 100) ? nohtml[0..100] + '...' : nohtml 
+		    
+		return [subtitle:summary, summary:description]
 	}
     
     private String getNowString()
