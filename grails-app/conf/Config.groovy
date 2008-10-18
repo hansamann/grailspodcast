@@ -55,7 +55,7 @@ grails.enable.native2ascii = true
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "http://gspot.morphexchange.com"
+        grails.serverURL = "http://www.grailspodcast.com"
     }
 }
 
@@ -92,7 +92,7 @@ jcaptchas {
 			new GenericCaptchaEngine( 
 						new GimpyFactory( 
 								new RandomWordGenerator( 
-										"1234567890grails"
+										"1234567890"
 								), 
 								new ComposedWordToImage( 
 										new RandomFontGenerator( 20, // min font size 

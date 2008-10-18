@@ -5,6 +5,7 @@ import java.util.GregorianCalendar
 import java.text.SimpleDateFormat
 import grails.util.GrailsUtil
 import org.codehaus.groovy.grails.commons.GrailsApplication
+import com.octo.captcha.service.*
 
 class BlogController {
 	def jcaptchaService
@@ -24,50 +25,58 @@ class BlogController {
 	
 	def newComment = {
 			log.info('newComment Action')
-			
-			 if (jcaptchaService.validateResponse("imageCaptcha", session.id, params.captcha))
-		     {
-				 def comment = new Comment(params)
-				 comment.created = new Date()
-			     def entry = Entry.get(params.entry.id)
-			     entry.addToComments(comment)
-				 log.info("errors? ${comment.hasErrors()}")
-				 log.info("entry id: ${comment.entry.id}")
-				 
-				 if(!comment.hasErrors() && comment.save()) {
+			try
+			{
+				 if (jcaptchaService.validateResponse("imageCaptcha", session.id, params.captcha))
+			     {
+					 def comment = new Comment(params)
+					 comment.created = new Date()
+				     def entry = Entry.get(params.entry.id)
+				     entry.addToComments(comment)
+					 log.info("errors? ${comment.hasErrors()}")
+					 log.info("entry id: ${comment.entry.id}")
 					 
-		                if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
-		                {
-		                	try
-		    	            {	
-		    	            	twitterService.announceComment(entry)
-		    	            } catch (Exception e)
-		    	            {
-		    	            	log.warn('Unable to send comment twitter message', e)
-		    	            }
-		                }
-		                else
-		                {
-		                	log.info('Not sending twitter message in development')
-		                } 					 
-					 
-					 render(contentType:"text/json") { 
-						 ok(entryId:comment.entry.id)
-					 }   
+					 if(!comment.hasErrors() && comment.save()) {
+						 
+			                if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
+			                {
+			                	try
+			    	            {	
+			    	            	twitterService.announceComment(entry)
+			    	            } catch (Exception e)
+			    	            {
+			    	            	log.warn('Unable to send comment twitter message', e)
+			    	            }
+			                }
+			                else
+			                {
+			                	log.info('Not sending twitter message in development')
+			                } 					 
+						 
+						 render(contentType:"text/json") { 
+							 ok(entryId:comment.entry.id)
+						 }   
+				     }
+					 else
+					 {
+						 render(contentType:"text/json") { 
+							 error(msg:'Please specify all input fields.')
+						 } 					 
+					 }
 			     }
-				 else
-				 {
+			     else
+			     {
 					 render(contentType:"text/json") { 
-						 error(msg:'Please specify all input fields.')
-					 } 					 
-				 }
-		     }
-		     else
-		     {
+						 error(msg:'Captcha is not correct, please try again.')
+					 } 
+			     }
+			}
+			catch (CaptchaServiceException cse)
+			{
 				 render(contentType:"text/json") { 
-					 error(msg:'Captcha is not correct, please try again.')
-				 } 
-		     }
+					 error(msg:'Sorry, could not verify captcha session. Please try again.')
+				 } 				
+			}
 
 	}
     
@@ -173,9 +182,9 @@ class BlogController {
 		}
 		
 		def summary = nohtml;
-		def description = (nohtml.size() > 100) ? nohtml[0..100] + '...' : nohtml 
+		def subtitle = (nohtml.size() > 100) ? nohtml[0..100] + '...' : nohtml 
 		    
-		return [subtitle:summary, summary:description]
+		return [subtitle:subtitle, summary:summary]
 	}
     
     private String getNowString()

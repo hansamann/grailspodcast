@@ -1,7 +1,6 @@
 import java.text.SimpleDateFormat
 
 class Entry {
-	List comments
 	static hasMany = [comments:Comment]
 	
 	String title
@@ -49,4 +48,9 @@ class Entry {
 		log.info(commentString)
 		return commentString
 	}
+
+    def getSortedComments()
+    {
+        Comment.findAllByEntry(this, [sort:'created', order:'desc'])
+    }
 }
