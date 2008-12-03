@@ -66,7 +66,7 @@ class EntryController extends SecureController {
             if(!entry.hasErrors() && entry.save()) {
                 flash.message = "Entry ${params.id} updated"
 
-                if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
+                if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT && params.twitter)
                 {
                 	try
     	            {	
@@ -78,7 +78,7 @@ class EntryController extends SecureController {
                 }
                 else
                 {
-                	log.info('Not sending twitter message in development')
+                	log.info('Not sending twitter message')
                 }                
                 
                 redirect(action:show,id:entry.id)
@@ -111,7 +111,7 @@ class EntryController extends SecureController {
         if(!entry.hasErrors() && entry.save()) {
             flash.message = "Entry ${entry.id} created"
            
-            if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
+            if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT && params.twitter)
             {
             	try
 	            {	
@@ -123,7 +123,7 @@ class EntryController extends SecureController {
             }
             else
             {
-            	log.info('Not sending twitter message in development')
+            	log.info('Not sending twitter message')
             }
         
             redirect(action:show,id:entry.id)

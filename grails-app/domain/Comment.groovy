@@ -72,8 +72,5 @@ class Comment {
 			
 			return timeString.toString() + " later"
 		}
-		
-		
-		
 	}
 }

@@ -49,6 +49,13 @@
                             <td valign="top" class="value">${fieldValue(bean:entry, field:'created')}</td>
                             
                         </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Human Readable Created:</td>
+
+                            <td valign="top" class="value">${fieldValue(bean:entry, field:'humanReadableDate')}</td>
+
+                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Tags:</td>
@@ -56,7 +63,14 @@
                             <td valign="top" class="value">${fieldValue(bean:entry, field:'tags')}</td>
                             
                         </tr>
-                    
+
+                        <tr class="prop">
+                            <td valign="top" class="name">Formatted Tags:</td>
+                            
+                            <td valign="top" class="value">${entry.formattedTags}</td>
+                            
+                        </tr>
+
                         <tr class="prop">
                             <td valign="top" class="name">Comments:</td>
                             
@@ -77,19 +91,6 @@
                             
                         </tr>
                     
-                        <tr class="prop">
-                            <td valign="top" class="name">Formatted Tags:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:entry, field:'formattedTags')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Human Readable Date:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:entry, field:'humanReadableDate')}</td>
-                            
-                        </tr>
                     
                     </tbody>
                 </table>

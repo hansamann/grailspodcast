@@ -30,7 +30,6 @@ class BlogController {
 				 if (jcaptchaService.validateResponse("imageCaptcha", session.id, params.captcha))
 			     {
 					 def comment = new Comment(params)
-					 comment.created = new Date()
 				     def entry = Entry.get(params.entry.id)
 				     entry.addToComments(comment)
 					 log.info("errors? ${comment.hasErrors()}")
@@ -196,7 +195,7 @@ class BlogController {
 	/* this returns sunnyvale time, only used for header display. rest uses UTC */
 	private Date getNow()
 	{
-		return new Date(new Date().time - 7 * 60 * 60 * 1000) // - 7 hours
+		return new Date(new Date().time - 8 * 60 * 60 * 1000) // - 7 hours (8DST)
 		
 	}
 	
@@ -229,7 +228,7 @@ class BlogController {
 	    	
 	    	//day or night
 			def c = new GregorianCalendar()
-			c.setTimeInMillis(new Date().time - 7 * 60 * 60 * 1000)
+			c.setTimeInMillis(getNow().time)
 			def sunrise = new GregorianCalendar(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), Integer.parseInt(sunriseTime[0]), Integer.parseInt(sunriseTime[1]))
 			def sunset = new GregorianCalendar(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), Integer.parseInt(sunsetTime[0])+12, Integer.parseInt(sunsetTime[1]))
 	    				

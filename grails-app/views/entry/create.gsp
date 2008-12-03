@@ -84,7 +84,16 @@
                                 <td valign="top" class="value ${hasErrors(bean:entry,field:'tags','errors')}">
                                     <input type="text" id="tags" name="tags" value="${fieldValue(bean:entry,field:'tags')}"/>
                                 </td>
-                            </tr> 
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="tags">Twitter?</label>
+                                </td>
+                                <td valign="top" class="value">
+                                  <g:checkBox name="twitter" value="${true}"/> Check to twitter this entry
+                                </td>
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -99,33 +108,6 @@
 </ul>
 <g:link controller="comment" params="['entry.id':entry?.id]" action="create">Add Comment</g:link>
 
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="formattedComment">Formatted Comment:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:entry,field:'formattedComment','errors')}">
-                                    
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="formattedTags">Formatted Tags:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:entry,field:'formattedTags','errors')}">
-                                    
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="humanReadableDate">Human Readable Date:</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:entry,field:'humanReadableDate','errors')}">
-                                    
                                 </td>
                             </tr> 
                         

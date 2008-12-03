@@ -39,8 +39,9 @@
 		         				<div class="section">special stuff</div>
 				      			<div class="defaultContainer">
 								    <g:link controller="blog" action="tag" id="interview">All Interviews</g:link><br/>
+                                    <g:link controller="blog" action="tag" id="poll">All Polls</g:link><br/>
 								    <g:link controller="blog" action="tag" id="groovyseries">All Groovy Series</g:link><br/> 
-								    <g:link controller="blog" action="tag" id="groovyseries">All Getting Real</g:link><br/>
+								    <a href="http://www.google.com/calendar/embed?src=jds6o8imt8qgtepchsmr72jhf4%40group.calendar.google.com&ctz=America/Los_Angeles">Groovy Calendar</a><br/>
 				      			</div>	
 		         				
 								<div class="flickr topSpace" id="flickr">
@@ -151,7 +152,7 @@
 	   		</div> 
 	   		<div id="ft">
 	   		<!-- footer -->
-	   		<div class="round">Grails Podcast 0.3 on Grails 1.0.3 | by <a href="http://hansamann.wordpress.com">Sven Haiges</a> and <a href="http://blogs.bytecode.com.au/glen">Glen Smith</a> | This blog is published under the <a href="http://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution-Noncommercial 3.0 License</a>. </div>
+	   		<div class="round">Grails Podcast 0.5 on Grails 1.0.4 | by <a href="http://hansamann.wordpress.com">Sven Haiges</a> and <a href="http://blogs.bytecode.com.au/glen">Glen Smith</a> | This blog is published under the <a href="http://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution-Noncommercial 3.0 License</a>. </div>
 	   		</div> 
 		</div>
    
