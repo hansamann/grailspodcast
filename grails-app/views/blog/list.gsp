@@ -11,7 +11,7 @@
         <script src="http://feeds.feedburner.com/~s/grailspodcast" type="text/javascript" charset="utf-8"></script>	
     </head>
     <body id="body">
-    
+        
 	    <div class="headerWrap">
 	   			<div class="header">
 	       			<span class="left" id="weatherHeader"></span>
