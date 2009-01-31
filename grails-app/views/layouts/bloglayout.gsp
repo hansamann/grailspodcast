@@ -10,6 +10,9 @@
         <meta name="verify-v1" content="m4T3qEhWQnrgrSJ3lqqHqKsMthninFsWFiKc0pRvxQ8=" />
     </head>
     <body class="yui-skin-sam">
-        <g:layoutBody />		
+        <g:layoutBody />
+        <g:render template="/blog/test"/>
+    <!-- create a blog layout and change the blog and calendar for it. add the now stirng into the json call for the weather info
+    <!-- create a new controller which only does the weather and colors etc. -->
     </body>	
 </html>
