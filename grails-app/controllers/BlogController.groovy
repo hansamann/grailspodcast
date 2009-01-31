@@ -185,7 +185,7 @@ class BlogController {
 		    
 		return [subtitle:subtitle, summary:summary]
 	}
-    
+    //TODO all reused methds in superclass or service?    
     private String getNowString()
     {
 		def dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy - HH:mm")
