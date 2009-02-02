@@ -1,8 +1,4 @@
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import com.sun.syndication.feed.synd.SyndImageImpl
-import grails.converters.JSON
-import java.util.GregorianCalendar
-import java.text.SimpleDateFormat
 import grails.util.GrailsUtil
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import com.octo.captcha.service.*
@@ -19,8 +15,7 @@ class BlogController {
             if(!params.max) params.max = 10
             params.order = "desc"
             params.sort = "created"
-            [ entries: Entry.findAllByCreatedLessThan( new Date(), params ), now:getNowString() ]
-            //[ entries: Entry.listOrderByCreated( params ), now:getNowString() ]
+            [ entries: Entry.findAllByCreatedLessThan( new Date(), params )]
     }
 	
 	def newComment = {
@@ -82,7 +77,7 @@ class BlogController {
     def id = {
 			log.info('id action')
 			def entry = Entry.get( params.id )
-			render(view:"list",model:[ entries: entry, title:entry?.title, now:getNowString() ])
+			render(view:"list",model:[ entries: entry, title:entry?.title])
     } 
 	
 	//called by episode URLMapping
@@ -90,14 +85,14 @@ class BlogController {
 	{
 			log.info('episodeNumber: ' + params.id)
 			def entry = Entry.findByTitleIlike("%Episode ${params.id}%")
-			render(view:"list",model:[ entries: entry, title:entry?.title, now:getNowString() ])
+			render(view:"list",model:[ entries: entry, title:entry?.title])
 	}
     
     def tag = {
 			log.info('tag action')
 			params.order = "desc"
             params.sort = "created"
-			render(view:"list",model:[ entries: Entry.findAllByTagsIlike("%${params.id}%", params), now:getNowString() ])
+			render(view:"list",model:[ entries: Entry.findAllByTagsIlike("%${params.id}%", params)])
     }
 	
 	def rss = {
@@ -185,109 +180,6 @@ class BlogController {
 		    
 		return [subtitle:subtitle, summary:summary]
 	}
-    //TODO all reused methds in superclass or service?    
-    private String getNowString()
-    {
-		def dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy - HH:mm")
-		def nowString = dateFormat.format(getNow());     	
-    	return nowString;
-    }
-	/* this returns sunnyvale time, only used for header display. rest uses UTC */
-	private Date getNow()
-	{
-		return new Date(new Date().time - 8 * 60 * 60 * 1000) // - 7 hours (8DST)
-		
-	}
-	
-	def dynamicWeather= {
-			log.info('dynamicWeather()')
-			rss()
-			//temperature
-			def nowTemp =  servletContext.weather.channel.item.'yweather:condition'.@temp.text()
-			def nowCondition = servletContext.weather.channel.item.'yweather:condition'.@text.text()
-			
-			//curent weather image
-			def description = servletContext.weather.channel.item.description.text()
-			def nowImageURL = description.substring(description.indexOf('<img src="')+10, description.indexOf('gif"/>')+3)
-			
-			
-			//forecast
-			def tomorrow = servletContext.weather.channel.item.'yweather:forecast'[1]
-			def tomorrowDay = tomorrow.@day.text()
-			def tomorrowCondition = tomorrow.@text.text()
-			def tomorrowLow = tomorrow.@low.text()
-			def tomorrowHigh = tomorrow.@high.text()
-			
-			
-			//get sunrise/sunset time from feed
-	    	def astro = servletContext.weather.channel.'yweather:astronomy'
-	    	def sunriseTime = astro.@sunrise.text().split(' ')[0].split(':')
-	    	log.info("sunriseTime ${sunriseTime}" )
-	    	def sunsetTime = astro.@sunset.text().split(' ')[0].split(':')
-	    	log.info("sunsetTime ${sunsetTime}" )
-	    	
-	    	//day or night
-			def c = new GregorianCalendar()
-			c.setTimeInMillis(getNow().time)
-			def sunrise = new GregorianCalendar(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), Integer.parseInt(sunriseTime[0]), Integer.parseInt(sunriseTime[1]))
-			def sunset = new GregorianCalendar(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE), Integer.parseInt(sunsetTime[0])+12, Integer.parseInt(sunsetTime[1]))
-	    				
-			def dayOrNight
-			if (c.before(sunrise) || c.after(sunset))
-			{
-			    dayOrNight = 'night'
-			    println "it is dark outside"
-			} 
-			else
-			{
-			    dayOrNight = 'day'
-			    println "it is light ouside" 
-			}
-			
-			
-			def weather = [	
-			               	nowTemp:Integer.parseInt(nowTemp),
-							nowCondition:nowCondition,
-							nowImageURL:nowImageURL,
-							tomorrow : [
-								day:tomorrowDay,
-								condition:tomorrowCondition,
-								low:Integer.parseInt(tomorrowLow),
-								high:Integer.parseInt(tomorrowHigh)
-							],
-							sunrise:[
-							         hour:Integer.parseInt(sunriseTime[0]),
-							         minute:Integer.parseInt(sunriseTime[1])
-							],
-							sunset: [
-							         hour:Integer.parseInt(sunsetTime[0])+12,
-							         minute:Integer.parseInt(sunsetTime[1])
-							],
-							dayOrNight:dayOrNight			
-				]
 
-			render weather as JSON
-	}
-	
-	def rss() {
-		fetchWeatherRss('94085')
-	}
-	
-	def fetchWeatherRss(zip)
-	{
-		log.info('fetchWeatherRss()')
-		def tenMinutesAgo = new Date(new Date().time - (1000 * 60 * 10))
-		if (!servletContext.weather || servletContext.lastUpdate.before(tenMinutesAgo))
-    	{
-    		log.info('Updating weather RSS!')
-			servletContext.weather = new XmlSlurper().parse("http://weather.yahooapis.com/forecastrss?p=${zip}&u=c").declareNamespace(yweather: 'http://xml.weather.yahoo.com/ns/rss/1.0')
-    		//servletContext.weather = new XmlSlurper().parse("http://weather.yahooapis.com/forecastrss?p=ASXX0023&u=c").declareNamespace(yweather: 'http://xml.weather.yahoo.com/ns/rss/1.0')
-			servletContext.lastUpdate = new Date();
-    	}
-		else
-		{
-			log.info('No Update necessary, using existing RSS text')
-		}
-		
-	}
+
 }

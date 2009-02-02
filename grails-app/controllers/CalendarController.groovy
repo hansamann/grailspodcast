@@ -1,7 +1,7 @@
-import java.text.SimpleDateFormat
-import net.fortuna.ical4j.model.DateTime
-import net.fortuna.ical4j.model.component.VEvent
 import net.fortuna.ical4j.util.Calendars
+import net.fortuna.ical4j.model.component.VEvent
+import java.text.SimpleDateFormat
+
 
 class CalendarController {
 
@@ -9,20 +9,45 @@ class CalendarController {
 
     def list = {
 
-            [ now:getNowString() ]
-    }
+    def url = 'http://www.google.com/calendar/ical/jds6o8imt8qgtepchsmr72jhf4%40group.calendar.google.com/public/basic.ics'.toURL()
+    def cal = Calendars.load(url)
 
-      //TODO all reused methds in superclass or service?
-    private String getNowString()
+    //println "Remark: ${cal.getProperty('X-WR-CALDESC').value}"
+
+    //def tz = TimeZone.getTimeZone("America/Los_Angeles")
+
+    def dayFormatter = new SimpleDateFormat("EEEEEEEE, MMMMMMMM dd'th' yyyy", Locale.US)
+    def timeFormatter = new SimpleDateFormat('HH:mm', Locale.US)
+    //timeFormatter.timeZone = tz
+
+    def dates = []
+    def now = new Date() //calculate correct now for Sunnyvale
+    log.debug("Total components in iCal file: ${cal.components.size()}" )
+
+    cal.components.findAll {it.startDate.date.time > now.time }.sort { it.startDate.date }.each
     {
-		def dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy - HH:mm")
-		def nowString = dateFormat.format(getNow());
-    	return nowString;
-    }
-	/* this returns sunnyvale time, only used for header display. rest uses UTC */
-	private Date getNow()
-	{
-		return new Date(new Date().time - 8 * 60 * 60 * 1000) // - 7 hours (8DST)
+      if (!it instanceof VEvent)
+      {
+        log.warn("Found event of class ${it.getClass()}, skipping!")
+        return;
+      }
 
-	}  
+      def startDate = dayFormatter.format(it.startDate.date)
+      def startTime = timeFormatter.format(it.startDate.date)
+
+      def eventMap = [
+              startDate : startDate,
+              startTime : startTime,
+              location : it.location.value,
+              summary : it.summary.value,
+              description : it.description.value
+      ]
+
+      dates << eventMap
+    }
+
+
+      [ dates : dates]
+    }
+
 }
