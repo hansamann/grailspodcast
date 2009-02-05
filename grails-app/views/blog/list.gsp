@@ -19,10 +19,6 @@
                     <td class="key">Your name:</td>
                     <td class="value"><input name="author" class="input" value=""/></td>
                 </tr>
-                <tr>
-                    <td class="key">Verification:</td>
-                    <td class="value"><input name="captcha" class="input" value="verify you're human"/>&nbsp;<jcaptcha:jpeg id="captcha" style="vertical-align:bottom;" name="imageCaptcha" height="23" width="100" /></td>
-                </tr>
                 </table>
                 <textarea class="commentTextarea" name="content">plain text only</textarea>
                 <div style="text-align:right;margin:1em 0;">

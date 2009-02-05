@@ -1,6 +1,6 @@
 package authentication
 
-class LoginForm {
+class LoginForm implements Serializable {
 	String login
 	String password
 	

@@ -38,7 +38,7 @@ class CalendarController {
       def eventMap = [
               startDate : startDate,
               startTime : startTime,
-              location : it.location.value,
+              location : (it.location.value) ? it.location.value : 'No Location',
               summary : it.summary.value,
               description : it.description.value
       ]

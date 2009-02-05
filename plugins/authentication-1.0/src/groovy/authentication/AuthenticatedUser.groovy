@@ -4,7 +4,7 @@ package authentication
  * Class encapsulating the result of a login. Encapsulates errors also so that
  * login failures to not use exceptions (very bad for performance and they are not ... exceptional)
  */
-class AuthenticatedUser {
+class AuthenticatedUser implements Serializable {
 	static final ERROR_NO_SUCH_LOGIN = 1
 	static final ERROR_INCORRECT_CREDENTIALS = 2
 	static final ERROR_LOGIN_NAME_NOT_AVAILABLE = 3
