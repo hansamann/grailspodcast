@@ -1,4 +1,0 @@
---Output from testFilterRequestNotLoggedIn--
---Output from testFilterRequestLoggedInNotAuth--
---Output from testFilterRequestLoggedInAuthOK--
-

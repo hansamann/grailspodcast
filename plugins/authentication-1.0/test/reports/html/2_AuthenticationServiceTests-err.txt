@@ -1,9 +1,0 @@
---Output from testSignupNoEmailConfirm--
---Output from testSignupEmailConfirm--
---Output from testExists--
---Output from testLoginExistingID--
---Output from testLoginNoSuchID--
---Output from testLoginBadPassword--
---Output from testCustomDomainClass--
---Output from testLogout--
-
