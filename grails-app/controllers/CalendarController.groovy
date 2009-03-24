@@ -24,21 +24,15 @@ class CalendarController {
     def now = new Date() //calculate correct now for Sunnyvale
     log.debug("Total components in iCal file: ${cal.components.size()}" )
 
-    cal.components.findAll {it.startDate.date.time > now.time }.sort { it.startDate.date }.each
+    cal.components.findAll {it instanceof VEvent && it.startDate.date.time > now.time }.sort { it.startDate.date }.each
     {
-      if (!it instanceof VEvent)
-      {
-        log.warn("Found event of class ${it.getClass()}, skipping!")
-        return;
-      }
-
       def startDate = dayFormatter.format(it.startDate.date)
       def startTime = timeFormatter.format(it.startDate.date)
 
       def eventMap = [
               startDate : startDate,
               startTime : startTime,
-              location : (it.location.value) ? it.location.value : 'No Location',
+              location : (it.location?.value) ? it.location?.value : 'No Location',
               summary : it.summary.value,
               description : it.description.value
       ]

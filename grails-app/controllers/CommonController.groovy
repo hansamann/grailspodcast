@@ -44,12 +44,12 @@ class CommonController {
 			if (c.before(sunrise) || c.after(sunset))
 			{
 			    dayOrNight = 'night'
-			    println "it is dark outside"
+			    log.debug "it is dark outside"
 			}
 			else
 			{
 			    dayOrNight = 'day'
-			    println "it is light ouside"
+			    log.debug "it is light ouside"
 			}
 
 

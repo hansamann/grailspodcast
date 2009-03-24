@@ -11,7 +11,8 @@ class BlogController
   def list = {
     log.info('list Action')
 
-    if (!params.max) params.max = 10
+    params.max = 10
+    //params.max = Math.min( params.max?.toInteger() ?: 0, 10)
     params.order = "desc"
     params.sort = "created"
     [entries: Entry.findAllByCreatedLessThan(new Date(), params)]
@@ -20,7 +21,6 @@ class BlogController
   def newComment =
   {
     log.info('newComment Action')
-
 
     def comment = new Comment(params)
     def entry = Entry.get(params.entry.id)

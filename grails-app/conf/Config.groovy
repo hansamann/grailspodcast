@@ -48,28 +48,20 @@ environments {
 }
 
 // log4j configuration
-log4j {
-    appender.stdout = "org.apache.log4j.ConsoleAppender"
-    appender.'stdout.layout'="org.apache.log4j.PatternLayout"
-    appender.'stdout.layout.ConversionPattern'='[%r] %c{2} %m%n'
-    rootLogger="info,stdout"
-    logger {
-        grails="WARN"
-		grails
-		{
-			app.controller="DEBUG"
-		}
-        org {
-            codehaus.groovy.grails.web.servlet="error"  //  controllers
-            codehaus.groovy.grails.web.pages="error" //  GSP
-            codehaus.groovy.grails.web.sitemesh="error" //  layouts
-            codehaus.groovy.grails."web.mapping.filter"="error" // URL mapping
-            codehaus.groovy.grails."web.mapping"="error" // URL mapping
-            codehaus.groovy.grails.commons="info" // core / classloading
-            codehaus.groovy.grails.plugins="error" // plugins
-            codehaus.groovy.grails.orm.hibernate="error" // hibernate integration
-            springframework="off"
-            hibernate="off"
-        }
-    }
+log4j = {
+    error      'org.codehaus.groovy.grails.web.servlet',  //  controllers
+	       'org.codehaus.groovy.grails.web.pages', //  GSP
+	       'org.codehaus.groovy.grails.web.sitemesh', //  layouts
+	       'org.codehaus.groovy.grails."web.mapping.filter', // URL mapping
+	       'org.codehaus.groovy.grails."web.mapping', // URL mapping
+	       'org.codehaus.groovy.grails.commons', // core / classloading
+	       'org.codehaus.groovy.grails.plugins', // plugins
+	       'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+	       'org.springframework',
+	       'org.hibernate'
+
+    warn       'org.mortbay.log'
+
+    debug      'grails.app.controller'
+
 }
