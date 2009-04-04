@@ -2,6 +2,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import grails.converters.JSON
 import java.util.GregorianCalendar
 import java.text.SimpleDateFormat
+import grails.util.GrailsUtil
 
 class CommonController {
 
@@ -112,7 +113,29 @@ class CommonController {
 	/* this returns sunnyvale time, only used for header display. rest uses UTC */
 	private Date getNow()
 	{
-		return new Date(new Date().time - 8 * 60 * 60 * 1000) // - 7 hours (8DST)
+            if (GrailsUtil.environment == 'development')
+            {
+                log.debug("Using Date as is in dev mode, assuming dev is in PDT")
+                return new Date();
+            }
+            else
+            {
+                log.debug("Calcuating Pacific Standard / Pacific Daylight date based on UTC date on prod server.")
+                TimeZone tz = TimeZone.getTimeZone("America/Los_Angeles");
+                def inDST = tz.inDaylightTime(new Date()) //ignoring the utc/pst/pdt offset here
+                if (inDST)
+                {
+                    log.debug('DST active UTC-7h')
+                    return new Date(new Date().time - 7 * 60 * 60 * 1000)
+                }
+                else
+                {
+                    log.debug('DST off UTC-8h')
+                    return new Date(new Date().time - 8 * 60 * 60 * 1000)
+                }
+                
+            }
+	
 
 	}
 }

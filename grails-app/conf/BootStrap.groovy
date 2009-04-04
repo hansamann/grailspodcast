@@ -89,6 +89,27 @@ class BootStrap {
             entries << [78, 24582135, 2009, 02, 05]
             entries << [79, 39278234, 2009, 02, 14]
 
+            def testContent1 = '''The soapbox topic is a quick comparison of <a href="http://code.google.com/p/iui/">iUI</a> and <a href="http://iwebkit.net/">iWebKit</a>, both toolkits&nbsp; for iPhone/iPod touch web development. <font size="2"><br>
+<br>
+</font><strong>Show Notes</strong><br>
+<div><ul>
+
+<li><a title="Grails GIT repository" href="http://github.com/grails/grails/tree/master" id="bvm7">Grails GIT repository</a> </li>
+<li><a title="Grails &amp; AJAX File Uploads with Dojo" href="http://matt-stine.blogspot.com/2009/03/grailsdojo-ajax-file-upload.html" id="jgql">Grails &amp; AJAX File Uploads with Dojo</a> </li>
+<li><a id="file" href="http://www.groovygrails.de/blog/groovygrails/entry/tomcat_and_java_versions_memory" title="Tomcat and Java versions on virtual hardware">Tomcat and Java versions on virtual hardware</a> </li>
+<li><a id="zc0w" href="http://fbflex.wordpress.com/2009/03/22/grails-and-flex-some-interesting-recent-links/" title="Grails and Flex - some interesting recent links">Grails and Flex - some interesting recent links</a> </li>
+<li><a id="d:5p" href="http://www.grailsblog.com/archive/show?id=10" title="Grails 1.1 IDE Smackdown">Grails 1.1 IDE Smackdown</a> </li>
+<li><a id="gj_w" href="http://www.objectpartners.com/2009/03/25/intro-to-building-desktop-style-uis-javascript-on-grails/" title="Comparing ExtJS and GrailsUI for webapp dev">Comparing ExtJS and GrailsUI for webapp dev</a> </li>
+<li>I<a id="a.i:" href="http://groovy.dzone.com/articles/implementing-load-demand-using" title="mplementing Load-on-demand with GrailsZK">mplementing Load-on-demand with GrailsZK</a></li>
+<li><a title="GORM Labs Plugin 0.1" href="http://grails.org/plugin/gorm-labs" id="op11">GORM Labs Plugin 0.1</a> released</li>
+<li>Peter Ledbrook's <a id="btpw" href="http://skillsmatter.com/podcast/java-jee/ggug-march" title="Gradle talk">Gradle talk</a> at London GGUG.</li>
+<li><a id="ojdl" href="http://mrhaki.blogspot.com/2009/03/use-restclient-to-post-and-read-xml.html" title="Use RESTClient to post and read XML RESTful webservice">Use RESTClient to post and read XML RESTful webservice</a> </li>
+<li><a title="GR8CONF" href="http://gr8conf.org" id="wf2w">GR8CONF</a> - early bird pricing till April 1st</li>
+<li><a id="d46l" href="http://jameswilliams.be/blog/entry/139" title="Getting Started with Griffon screencast">Getting Started with Griffon screencast</a> by James Williams</li>
+</ul>
+We have a real highlight in terms of FREE stuff this episode. We give away a free pass for the <a href="http://gr8conf.org/">GR8CONF</a>. Listen to the show to get the details on how to win and visit their website to find out more. <br></div>
+'''
+
              if (Entry.count() == 0)
              {
                 entries.each
@@ -96,13 +117,15 @@ class BootStrap {
                         def date = new GregorianCalendar(entry[2], entry[3]-1, entry[4]).getTime()
                         def e = new Entry(
                                         title:"Grails Podcast Episode ${entry[0]}",
-                                        content:'',
+                                        content:testContent1,
                                         created:date,
                                         tags:'groovy grails',
                                         enclosureURL:"http://hansamann.podspot.de/files/grails_podcast_episode_${entry[0]}.mp3",
                                         enclosureLength:entry[1]
                          ).save()
                 }
+
+                
              }
 
 

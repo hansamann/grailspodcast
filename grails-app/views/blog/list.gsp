@@ -3,7 +3,7 @@
         <meta name="layout" content="blog" />
      	<g:if test="${title}">
 			<title>${title?.encodeAsHTML()}</title>
-		</g:if>
+	</g:if>
         <script src="http://feeds.feedburner.com/~s/grailspodcast" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" src="http://static.delicious.com/js/playtagger.js"></script>
         <meta name="verify-v1" content="m4T3qEhWQnrgrSJ3lqqHqKsMthninFsWFiKc0pRvxQ8=" />      

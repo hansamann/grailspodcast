@@ -21,8 +21,7 @@
 					<div class="defaultContainer">
 						<a href="http://www.flickr.com/search/?q=grailspodcast&m=tags">Flickr tag: 'grailspodcast'</a><br/>
 						<a href="http://twitter.com/grailspodcast">Follow us on Twitter!</a><br/>
-						<a href="mailto:grails.podcast@gmail.com">grails.podcast@gmail.com</a><br/>
-						<a href="callto:+14083319118">Voicemail: +1 408 3319 118</a>
+						<a href="mailto:grails.podcast@gmail.com">grails.podcast@gmail.com</a>
 					</div>
 
 	      			<div class="section topSpace">our sponsors</div>
