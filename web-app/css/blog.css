@@ -128,6 +128,38 @@
 
 }
 
+.smallEntry
+{
+    width: 248px;
+    height: 50px;
+    overflow:hidden;
+    float: left;
+    padding: 0.25em;
+    background-image: url('/images/gspot/transparent25.png');
+    margin-bottom: 0.5em;
+}
+
+.smallEntryRightSide
+{
+    width: 249px;
+    height: 50px;
+    overflow:hidden;
+    float: right;
+    padding: 0.25em;
+    background-image: url('/images/gspot/transparent25.png');
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+
+}
+
+.entry .title
+{
+	clear:both;
+	font-weight: bolder;
+	font-size:123.1%; /*renders 16px */
+	margin-top: 1em;
+}
+
 .entry
 {
 	padding: 0.5em;	
