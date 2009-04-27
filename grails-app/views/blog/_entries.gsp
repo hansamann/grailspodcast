@@ -16,10 +16,27 @@
       </g:if>
       <!-- class feedburnerFlareBlock in CSS -->
       <script src="http://feeds.feedburner.com/~s/grailspodcast?i=http://www.grailspodcast.com/blog/id/${entry.id}" type="text/javascript" charset="utf-8"></script>
-
     </div>
+    <g:if test="${params.id}">
+      <!-- show comments box on single entry view -->
+      <g:form id="newCommentForm" name="newCommentForm" method="post" action="newComment">
+        <input type="hidden" name="entry.id" value="${entry.id}"/>
+        <table class="layoutTable">
+        <tr>
+            <td class="key">Name:</td>
+            <td class="value" style="text-align:right;">
+                <span style="float:left;">
+                  <input name="author" class="input" value=""/>
+                </span>
+                <input type="submit" name="saveComment" value="add comment" />
+            </td>
+        </tr>
+        </table>
+        <textarea class="commentTextarea" name="content">plain text only</textarea>
+      </g:form>
+    </g:if>
     <div class="comments">
-      ${entry.formattedComment} &middot; <a id="createComment${entry.id}">Create comment</a>
+      ${entry.formattedComment} <g:if test="${!params.id}">&middot; <g:link action="id" id="${entry.id}">Create comment</g:link></g:if>
       <g:each in="${entry.sortedComments}" var="comment">
         <div class="comment">
           <strong>${comment.formattedCreated}</strong>, ${comment.author.encodeAsHTML()} wrote:<br/>

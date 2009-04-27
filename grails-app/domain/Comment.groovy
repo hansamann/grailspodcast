@@ -8,7 +8,8 @@ class Comment {
 	String content
 	
 	static constraints = {
-		author(blank:false)
+		entry(nullable:false)
+                author(blank:false)
 		content(widget:'textarea', blank:false, maxSize:1000)
 		created()
 	}

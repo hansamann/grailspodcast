@@ -1,7 +1,7 @@
 
 var loader = new YAHOO.util.YUILoader
 ({
-    require: ["logger", "yahoo", "event", "dom", "element", "button", "container", "connection", "json", "animation", "reset", "fonts", "grids", "base"],
+    require: ["logger", "yahoo", "event", "dom", "element", "container", "connection", "json", "reset", "fonts", "grids", "base"],
     loadOptional: true,
     onSuccess: function() {
 		YAHOO.widget.Logger.enableBrowserConsole();
@@ -50,9 +50,6 @@ function init()
   		}
 	}, null);
 
-	//connect create comment links
-	YAHOO.lang.later(3000, this, initComments, null, false);
-
 	YAHOO.util.Event.addListener('searchBox', 'mouseover', searchBoxOver);
 	YAHOO.util.Event.addListener('searchBox', 'mouseout', searchBoxOut);
 	YAHOO.util.Event.addListener('searchBox', 'keydown', search);
@@ -63,20 +60,6 @@ function init()
 }
 
 
-function initComments()
-{
-	YAHOO.log('initComments()');
-    if (!YAHOO.util.Dom.get('newComment')) //now newComment div = no need to initialize this
-    {
-        YAHOO.log("Could not find newComment id, skipping initComments()");
-        return;
-    }
-
-    var commentLinks = YAHOO.util.Dom.getElementsBy(function(e) { return (e.id && e.id.indexOf('createComment') != -1) ? true : false; }, 'a', 'content');
-	YAHOO.log('Found commentLinks: ' + commentLinks.length);
-	YAHOO.util.Event.addListener(commentLinks, "click", createComment);
-	YAHOO.util.Event.addListener('commentButton', "click", createCommentPerform);
-}
 
 function searchBoxOver(event)
 {
@@ -133,57 +116,6 @@ function buildResultEntry(r)
 	html += '<div class="enclosure"><a href="'+r.clickurl+'">'+r.dispurl+'</a></div>';
 	html += '</div>';
 	return html;
-}
-
-function createComment(e)
-{
-	YAHOO.log(this.id);
-
-	var newComment = YAHOO.util.Dom.get('newComment');
-
-
-	YAHOO.util.Dom.insertAfter('newComment', this.id);
-	YAHOO.util.Dom.removeClass('newComment', 'off');
-
-	//set the correct id of the entry to the hidden form field to capture the entry
-	YAHOO.util.Dom.get('newCommentEntryId').value = parseInt(this.id.substring(13, this.id.length), 10);
-
-	YAHOO.util.Event.stopEvent(e);
-}
-
-function createCommentPerform(e)
-{
-	YAHOO.log('createCommentPerform');
-	var formObject = YAHOO.util.Dom.get('newCommentForm');
-	YAHOO.util.Connect.setForm(formObject);
-
-	var callback =
-	{
-	  success: function(o)
-	  {
-	  	YAHOO.log('success: ' + o.responseText);
-	  	var response = YAHOO.lang.JSON.parse(o.responseText);
-	  	if (response.ok)
-	  	{
-	  		YAHOO.log('Comment created, forward to entry view');
-	  		location.href = '/blog/id/' + response.ok.entryId;
-	  	}
-	  	else
-	  	{
-	  		YAHOO.log('Validation error: ' + response.error.msg);
-	  	}
-
-  	  },
-	  failure: function(o)
-	  {
-	  	alert('Sorry, we could not save your comment at this time.');
-  	   },
-	  timeout: 5000
-	}
-
-	var cObj = YAHOO.util.Connect.asyncRequest('POST', '/blog/newComment', callback);
-
-
 }
 
 function testBackground()
@@ -245,7 +177,7 @@ function getFlickrPhotoURL(photo)
 function createWeatherHeader(weather)
 {
 	YAHOO.log('createWeatherHeader()');
-	//Now: Partly Cloudy, 17°C - Mon: Mostly Sunny, L11/H21°C - Sunrise/Sunset: 5:52 am/ 8:19 pm
+	//Now: Partly Cloudy, 17ï¿½C - Mon: Mostly Sunny, L11/H21ï¿½C - Sunrise/Sunset: 5:52 am/ 8:19 pm
 	var weatherHeader = "Sunnyvale, CA &middot; ";
 	weatherHeader += weather.nowCondition + ', ' + weather.nowTemp + '&deg;C &middot; ';
 	weatherHeader += weather.tomorrow.day + ': ' + weather.tomorrow.condition + ', L' + weather.tomorrow.low + '/H' + weather.tomorrow.high + '&deg;C &middot; ';

@@ -23,8 +23,6 @@ class BlogController
     log.info('newComment Action')
 
     def comment = new Comment(params)
-    def entry = Entry.get(params.entry.id)
-    entry.addToComments(comment)
     log.info("errors? ${comment.hasErrors()}")
     log.info("entry id: ${comment.entry.id}")
 
@@ -46,18 +44,14 @@ class BlogController
       {
         log.info('Not sending twitter message in development')
       }
-
-      render(contentType: "text/json") {
-        ok(entryId: comment.entry.id)
-      }
+      flash.message="Comment saved."
+      redirect(action:'id', id:comment.entry.id)
     }
     else
     {
-      render(contentType: "text/json") {
-        error(msg: 'Please specify all input fields.')
-      }
+      flash.message="Could not save comment... did you fill out all fields?"
+      redirect(action:'id', id:comment.entry.id)  
     }
-
 
   }
 

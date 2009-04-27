@@ -1,3 +1,10 @@
+.blogMessage {
+    padding: 0.5em;
+    background-image: url('/images/gspot/transparent25.png');
+    margin-bottom: 0.5em;
+    color: black;
+}
+
 .flickrImage
 {
 	float:left;
@@ -201,6 +208,12 @@
 .entry .content .feedburnerFlareBlock
 {
 	font-size: 85%;	
+}
+
+#newCommentForm
+{
+    border-top: 1px dotted;
+    margin-bottom: 0.3em;
 }
 
 .entry .comments

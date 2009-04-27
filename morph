@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar morph-deploy.jar --config morph_deploy.properties gspot-0.9.war
+java -jar morph-deploy.jar --config morph_deploy.properties gspot-1.0.war
