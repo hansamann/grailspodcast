@@ -57,11 +57,13 @@ log4j = {
 	       'org.codehaus.groovy.grails.commons', // core / classloading
 	       'org.codehaus.groovy.grails.plugins', // plugins
 	       'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-	       'org.springframework',
+               'org.springframework',
 	       'org.hibernate'
 
     warn       'org.mortbay.log'
 
     debug      'grails.app.controller'
+    debug      'grails.app.service'
+    
 
 }

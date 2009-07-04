@@ -3,9 +3,9 @@ class Comment {
 	
 	Entry entry
 	
-	String author
+	String author = 'Your name'
 	Date created = new Date()
-	String content
+	String content = 'Plain text only'
 	
 	static constraints = {
 		entry(nullable:false)

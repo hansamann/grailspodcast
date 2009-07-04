@@ -5,6 +5,7 @@ import org.codehaus.groovy.grails.commons.GrailsApplication
 class BlogController
 {
   def twitterService
+  def recaptchaService
 
   def index = { redirect(action: list, params: params) }
 
@@ -21,12 +22,24 @@ class BlogController
   def newComment =
   {
     log.info('newComment Action')
+    log.info("recaptcha_challenge_field: ${params.recaptcha_challenge_field}")
+    log.info("recaptcha_response_field: ${params.recaptcha_response_field}")
 
     def comment = new Comment(params)
     log.info("errors? ${comment.hasErrors()}")
     log.info("entry id: ${comment.entry.id}")
 
-    if (!comment.hasErrors() && comment.save())
+    def survivedCaptcha = recaptchaService.validate(request.remoteAddr, params.recaptcha_challenge_field, params.recaptcha_response_field)
+    log.debug("survivedCaptcha: ${survivedCaptcha}")
+
+    if (!survivedCaptcha)
+    {
+      flash.message="Sorry, captcha was wrong. Please try again."
+      //redirect(action:'id', id:comment.entry.id)
+      def entry = Entry.get(comment.entry.id)
+      render(view: "list", model: [entries: entry, title: entry?.title, comment:comment])
+    }
+    else if (!comment.hasErrors() && comment.save())
     {
 
       if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
@@ -50,7 +63,9 @@ class BlogController
     else
     {
       flash.message="Could not save comment... did you fill out all fields?"
-      redirect(action:'id', id:comment.entry.id)  
+      //redirect(action:'id', id:comment.entry.id)
+      def entry = Entry.get(comment.entry.id)
+      render(view: "list", model: [entries: entry, title: entry?.title, comment:comment])
     }
 
   }
@@ -58,7 +73,7 @@ class BlogController
   def id = {
     log.info('id action')
     def entry = Entry.get(params.id)
-    render(view: "list", model: [entries: entry, title: entry?.title])
+    render(view: "list", model: [entries: entry, title: entry?.title, comment:new Comment()])
   }
 
   //called by episode URLMapping
@@ -73,7 +88,9 @@ class BlogController
     log.info('tag action')
     params.order = "desc"
     params.sort = "created"
-    render(view: "list", model: [entries: Entry.findAllByTagsIlike("%${params.id}%", params)])
+    def like = params.id
+    params.id = null //otherwise we see comment forms for all entries
+    render(view: "list", model: [entries: Entry.findAllByTagsIlike("%${like}%", params)])
   }
 
   def rss = {
