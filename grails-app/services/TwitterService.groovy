@@ -1,3 +1,5 @@
+import twitter4j.TwitterException
+import twitter4j.Twitter
 class TwitterService {
 
     boolean transactional = false
@@ -46,19 +48,18 @@ class TwitterService {
     
     def sendMessage(msg) 
     {
-    	def urlString = "http://twitter.com/statuses/update.xml"
-    	URL url = new URL (urlString)
-    	def podcastUser = AuthenticationUser.findByLogin('grailspodcast')
-    	def userPassword = "grailspodcast:${podcastUser.password}"
-    	String encoding = new sun.misc.BASE64Encoder().encode (userPassword.getBytes())
-    	URLConnection uc = url.openConnection()
-    	uc.setDoOutput(true)
-    	uc.setRequestProperty ("Authorization", "Basic " + encoding)
-    	OutputStreamWriter out = new OutputStreamWriter(uc.getOutputStream())
-    	out.write("status=" + java.net.URLEncoder.encode(msg))
-    	out.close()
+        def podcastUser = AuthenticationUser.findByLogin('grailspodcast')
+        def twitter = new Twitter('grailspodcast', podcastUser.password)
 
-    	log.info("Twitter message sent, responseCode: ${uc.getResponseCode()}")
+        try
+        {
+            def status = twitter.updateStatus(msg)
+        }
+        catch (TwitterException e)
+        {
+            log.warn("Unable to update status: " + msg, e)
+        }
+
     }
     
     def tinyURL(urlString)

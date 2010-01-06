@@ -26,18 +26,8 @@
 
 	      			<div class="section topSpace">our sponsors</div>
 					<div class="defaultContainer center">
-                                        <script type="text/javascript"><!--
-                                        google_ad_client = "pub-5670736856959838";
-                                        /* grailspodcast.com 200x200 */
-                                        google_ad_slot = "1768658574";
-                                        google_ad_width = 200;
-                                        google_ad_height = 200;
-                                        //-->
-                                        </script>
-                                        <script type="text/javascript"
-                                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                                        </script>
-                                        <!-- a href="http://www.mor.ph/grails?utm_source=morph&utm_medium=banner&utm_campaign=grailspodcast"><img alt="Host Grails Web apps with Morph AppSpace" src="${createLinkTo(dir:'images/gspot',file:'morph.gif')}"/></a -->
+     
+                                        <a href="http://www.g2ix.com"><img src="http://www.g2ix.com/assets/g2ix/files/images/ad.gif"/></a -->
 					</div>
 
 	      			<div class="section topSpace">feeds</div>

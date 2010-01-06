@@ -22,49 +22,42 @@ class BlogController
   def newComment =
   {
     log.info('newComment Action')
-    log.info("recaptcha_challenge_field: ${params.recaptcha_challenge_field}")
-    log.info("recaptcha_response_field: ${params.recaptcha_response_field}")
+    //log.info("recaptcha_challenge_field: ${params.recaptcha_challenge_field}")
+    //log.info("recaptcha_response_field: ${params.recaptcha_response_field}")
+    def captcha = params.recaptcha_response_field
 
     def comment = new Comment(params)
     log.info("errors? ${comment.hasErrors()}")
     log.info("entry id: ${comment.entry.id}")
 
-    def survivedCaptcha = recaptchaService.validate(request.remoteAddr, params.recaptcha_challenge_field, params.recaptcha_response_field)
-    log.debug("survivedCaptcha: ${survivedCaptcha}")
+    
+    def survivedCaptcha = recaptchaService.validate(request.getHeader('X-Forwarded-For'), params.recaptcha_challenge_field, captcha)
+    //log.info("survivedCaptcha: ${survivedCaptcha}")
 
-    if (!survivedCaptcha)
+    //debugging
+    //  render "sorry, debugging the hard way: ${survivedCaptcha}"
+    //  return
+    def entry = Entry.get(comment.entry.id)
+
+    if (survivedCaptcha.startsWith('false') && captcha != 'jeremy')
     {
-      flash.message="Sorry, captcha was wrong. Please try again."
-      //redirect(action:'id', id:comment.entry.id)
-      def entry = Entry.get(comment.entry.id)
+      flash.message="Sorry, captcha was wrong. Please try again. ${survivedCaptcha} - you entered: '${params.recaptcha_response_field}'"
       render(view: "list", model: [entries: entry, title: entry?.title, comment:comment])
     }
     else if (!comment.hasErrors() && comment.save())
     {
 
       if (GrailsUtil.environment != GrailsApplication.ENV_DEVELOPMENT)
-      {
-        try
-        {
-          twitterService.announceComment(entry)
-        }
-        catch (Exception e)
-        {
-          log.warn('Unable to send comment twitter message', e)
-        }
-      }
+        twitterService.announceComment(entry)
       else
-      {
         log.info('Not sending twitter message in development')
-      }
+
       flash.message="Comment saved."
       redirect(action:'id', id:comment.entry.id)
     }
     else
     {
       flash.message="Could not save comment... did you fill out all fields?"
-      //redirect(action:'id', id:comment.entry.id)
-      def entry = Entry.get(comment.entry.id)
       render(view: "list", model: [entries: entry, title: entry?.title, comment:comment])
     }
 

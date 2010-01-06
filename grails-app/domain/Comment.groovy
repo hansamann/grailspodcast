@@ -10,7 +10,7 @@ class Comment {
 	static constraints = {
 		entry(nullable:false)
                 author(blank:false)
-		content(widget:'textarea', blank:false, maxSize:1000)
+		content(widget:'textarea', blank:false, maxSize:10000)
 		created()
 	}
 	

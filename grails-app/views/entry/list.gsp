@@ -16,6 +16,7 @@
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
+            <div>remoteAddr: ${request.remoteAddr} - ${request.getHeader('X-Forwarded-For')}</div>
             <div class="list">
                 <table>
                     <thead>

@@ -5,8 +5,7 @@ class UrlMappings {
         "/"{
             controller = {
                 def serverName = request.serverName
-                println serverName
-
+                //println serverName
                 serverName.startsWith('m.') ? 'mobile' : false
             }
             action = 'list'
